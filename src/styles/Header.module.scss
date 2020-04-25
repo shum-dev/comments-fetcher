@@ -1,0 +1,17 @@
+@import './colors.module.scss';
+
+.container {
+  h1 {
+    text-align: center;
+    font-family: RoadRadio;
+    letter-spacing: 3px;
+    min-height: 130px;
+    color: $black-100;
+    background-color: $white;
+    font-weight: bold;
+    font-size: 4rem;
+    padding-top: 49px;
+  }
+}
+
+

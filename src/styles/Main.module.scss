@@ -1,0 +1,13 @@
+.container {
+  padding: 0 85px;
+  position: relative;
+
+  @media (max-width: 831px) {
+    padding: 0 25px;
+  }
+}
+.list {
+  list-style: none;
+  max-width: 1200px;
+  margin: 0 auto;
+}
