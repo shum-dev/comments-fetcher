@@ -14,7 +14,7 @@ const SearchBar = ({ handleSearch }) => {
 
   const history = useHistory();
 
-  const handleOnClick = (item) => {
+  const handleClick = (item) => {
     history.push(`?filter=${item}`);
     setFilter(item);
     setName('');
@@ -39,7 +39,7 @@ const SearchBar = ({ handleSearch }) => {
         <span>Show only</span>
         { buttons.map((item, i) => {
           const isActive = filter === item;
-          return <button key={i} type="button" className={isActive ? active : ''} onClick={handleOnClick.bind(this, item)}>{item}</button>;
+          return <button key={i} type="button" className={isActive ? active : ''} onClick={handleClick.bind(this, item)}>{item}</button>;
         })}
       </div>
     </section>

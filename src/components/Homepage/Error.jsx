@@ -1,5 +1,5 @@
 import React from 'react';
-import { container } from '../styles/Error.module.scss';
+import { container } from '../../styles/Error.module.scss';
 
 const Error = ({ message }) => (
   <div className={container}>

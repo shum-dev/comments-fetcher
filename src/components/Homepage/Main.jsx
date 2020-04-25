@@ -5,8 +5,7 @@ import { useSelector } from 'react-redux';
 import Card from './Card';
 import Error from './Error';
 
-
-import { container, list } from '../styles/Main.module.scss';
+import { container, list } from '../../styles/Main.module.scss';
 
 const Main = ({ resultList }) => {
   const { error } = useSelector((state) => state.errors);

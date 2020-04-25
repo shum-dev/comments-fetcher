@@ -1,5 +1,5 @@
 import React from 'react';
-import { container } from '../styles/Card.module.scss';
+import { container } from '../../styles/Card.module.scss';
 
 const Card = ({ data }) => (
   <li className={container}>
