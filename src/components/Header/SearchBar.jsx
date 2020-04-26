@@ -37,10 +37,12 @@ const SearchBar = ({ handleSearch }) => {
 
       <div>
         <span>Show only</span>
-        { buttons.map((item, i) => {
-          const isActive = filter === item;
-          return <button key={i} type="button" className={isActive ? active : ''} onClick={handleClick.bind(this, item)}>{item}</button>;
-        })}
+        <span>
+          { buttons.map((item, i) => {
+            const isActive = filter === item;
+            return <button key={i} type="button" className={isActive ? active : ''} onClick={handleClick.bind(this, item)}>{item}</button>;
+          })}
+        </span>
       </div>
     </section>
   );
