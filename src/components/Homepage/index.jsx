@@ -9,41 +9,30 @@ import Main from './Main';
 import Loader from '../Loader';
 
 
-const Homepage = ({ history }) => {
+const Homepage = () => {
   const dispatch = useDispatch();
 
-  const { cache, filteredList } = useSelector((state) => state.comments);
-  const [resultList, setResultList] = useState([]);
+  const { cache, filteredList, filter } = useSelector((state) => state.comments);
+  const [resultList, setResultList] = useState(filteredList);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    history.push('?filter=.org');
-  }, [history]);
-
-  useEffect(() => {
-    const unbindHistory = history.listen((location) => {
-      const currentFilter = location.search.split('=')[1];
-      const result = cache.filter((item) => item.email.includes(currentFilter));
-      dispatch(setCommentsFilteredList(result));
-      setResultList(result);
-    });
-
-    return () => {
-      unbindHistory();
-    };
-  }, [history, cache, dispatch, setResultList]);
+    const result = cache.filter((item) => item.email.includes(filter));
+    dispatch(setCommentsFilteredList(result));
+    setResultList(result);
+  }, [cache, dispatch, setResultList, filter]);
 
   useEffect(() => {
     dispatch(fetchComments())
       .then((res) => {
         dispatch(removeError());
-        const result = res.filter((item) => item.email.includes('.org'));
-        dispatch(setCommentsFilteredList(result));
+        const result = res.filter((item) => item.email.includes(filter));
         setResultList(result);
         setIsLoading(false);
       })
       .catch(() => setIsLoading(false));
-  }, [dispatch]);
+    // eslint-disable-next-line
+  }, []);
 
   const search = (term) => {
     const filtered = filteredList.filter((item) => item.name.includes(term));

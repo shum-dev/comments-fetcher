@@ -2,6 +2,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCommentsFilter } from '../../redux/actions/comments';
 
 import { container, active } from '../../styles/SearchBar.module.scss';
 
@@ -9,14 +11,15 @@ import { container, active } from '../../styles/SearchBar.module.scss';
 const SearchBar = ({ handleSearch }) => {
   const buttons = ['.org', '.com', '.biz'];
 
-  const [name, setName] = useState('');
-  const [filter, setFilter] = useState('.org');
+  const dispatch = useDispatch();
 
+  const { filter } = useSelector((state) => state.comments);
+  const [name, setName] = useState('');
   const history = useHistory();
 
   const handleClick = (item) => {
+    dispatch(setCommentsFilter(item));
     history.push(`?filter=${item}`);
-    setFilter(item);
     setName('');
   };
 

@@ -1,9 +1,9 @@
 import apiCall from '../../services/api';
 import { setError } from './errors';
-import { SET_COMMENTS, SET_COMMENTS_FILTERED } from '../actionTypes';
+import { INIT_COMMENTS, SET_COMMENTS_FILTERED, SET_COMMENTS_FILTER } from '../actionTypes';
 
-export const setComments = (comments) => ({
-  type: SET_COMMENTS,
+export const initComments = (comments) => ({
+  type: INIT_COMMENTS,
   payload: comments,
 });
 
@@ -12,10 +12,15 @@ export const setCommentsFilteredList = (filteredComments) => ({
   payload: filteredComments,
 });
 
+export const setCommentsFilter = (filter) => ({
+  type: SET_COMMENTS_FILTER,
+  payload: filter,
+});
+
 export const fetchComments = () => (dispatch) => (
   apiCall('get', '/comments')
     .then((res) => {
-      dispatch(setComments(res));
+      dispatch(initComments(res));
       return res;
     })
     .catch((err) => {
