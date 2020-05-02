@@ -12,16 +12,14 @@ import Loader from '../Loader';
 const Homepage = () => {
   const dispatch = useDispatch();
 
-  const { filteredList, filter } = useSelector((state) => state.comments);
-  const [resultList, setResultList] = useState(filteredList);
+  const { filteredList } = useSelector((state) => state.comments);
+  const [resultList, setResultList] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     dispatch(fetchComments())
-      .then((res) => {
+      .then(() => {
         dispatch(removeError());
-        const result = res.filter((item) => item.email.includes(filter));
-        setResultList(result);
         setIsLoading(false);
       })
       .catch(() => setIsLoading(false));
