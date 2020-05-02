@@ -1,15 +1,10 @@
 import apiCall from '../../services/api';
 import { setError } from './errors';
-import { INIT_COMMENTS, SET_COMMENTS_FILTERED, SET_COMMENTS_FILTER } from '../actionTypes';
+import { INIT_COMMENTS, SET_COMMENTS_FILTER } from '../actionTypes';
 
 export const initComments = (comments) => ({
   type: INIT_COMMENTS,
   payload: comments,
-});
-
-export const setCommentsFilteredList = (filteredComments) => ({
-  type: SET_COMMENTS_FILTERED,
-  payload: filteredComments,
 });
 
 export const setCommentsFilter = (filter) => ({
