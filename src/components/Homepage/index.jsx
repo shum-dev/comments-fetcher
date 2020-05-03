@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchComments } from '../../redux/actions/comments';
+import { fetchComments, setCommentsFilter } from '../../redux/actions/comments';
 import { removeError } from '../../redux/actions/errors';
 
 import Header from '../Header';
@@ -9,7 +9,7 @@ import Main from './Main';
 import Loader from '../Loader';
 
 
-const Homepage = () => {
+const Homepage = ({ location }) => {
   const dispatch = useDispatch();
 
   const { filteredList } = useSelector((state) => state.comments);
@@ -17,6 +17,7 @@ const Homepage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    dispatch(setCommentsFilter(location.search.split('=')[1]));
     dispatch(fetchComments())
       .then(() => {
         dispatch(removeError());
